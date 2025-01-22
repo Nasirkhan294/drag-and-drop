@@ -1,0 +1,35 @@
+.btn-draggable {
+  color: #000;
+  border: 1px solid #007bff;
+  cursor: grab;
+  margin: 5px;
+}
+
+.btn-draggable:hover {
+  background-color: #cfe2ff;
+}
+
+.btn-submit {
+	background-color: rgb(6, 6, 149);
+	color: #fff;
+}
+
+.badge-primary {
+  background-color: #007bff;
+  border-radius: 50%;
+}
+
+.droppable {
+  min-height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

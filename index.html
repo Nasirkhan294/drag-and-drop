@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and Drop UI</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section class="p-5">
+      <h1 class="">What do you find most important at work?</h1>
+      <div class="my-3">
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="salary"
+        >
+          <span class="badge badge-primary">1</span> Salary
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="working"
+        >
+          <span class="badge badge-primary">2</span> Working & development
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="benefits"
+        >
+          <span class="badge badge-primary">3</span> Benefits
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="remote"
+        >
+          <span class="badge badge-primary">4</span> Remote Work
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="location"
+        >
+          <span class="badge badge-primary">5</span> Location
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="atmosphere"
+        >
+          <span class="badge badge-primary">6</span> Work atmosphere
+        </button>
+      </div>
+
+      <div class="row my-5 gap-3">
+        <div class="col-12 col-md-4 card px-0">
+          <p
+            class="d-flex justify-content-center align-items-center bg-secondary rounded-top p-3 text-white"
+          >
+            Important
+          </p>
+          <div class="droppable" id="important"></div>
+        </div>
+        <div class="col-12 col-md-4 card px-0">
+          <p
+            class="d-flex justify-content-center align-items-center bg-secondary rounded-top p-3 text-white"
+          >
+            Not Important
+          </p>
+          <div class="droppable" id="not-important"></div>
+        </div>
+      </div>
+
+      <div class="error" id="error-message"></div>
+      <button
+        type="button"
+        class="btn btn-submit my-3 border px-4 py-2 rounded-lg"
+        id="submit"
+      >
+        Submit
+      </button>
+
+      <div>
+        <h3>Selected Options:</h3>
+        <p id="important-options">Important:</p>
+        <p id="not-important-options">Not Important:</p>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
