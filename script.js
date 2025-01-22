@@ -24,6 +24,7 @@ function enableDragAndDrop(draggable) {
 		const touch = e.touches[0];
 		const draggable = document.querySelector('.dragging');
 		draggable.style.position = 'absolute';
+		draggable.style.zIndex = '1000';
 		draggable.style.left = `${touch.clientX - draggable.offsetWidth / 2}px`;
 		draggable.style.top = `${touch.clientY - draggable.offsetHeight / 2}px`;
 	});
