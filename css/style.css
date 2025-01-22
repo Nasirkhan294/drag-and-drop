@@ -1,6 +1,6 @@
 .btn-draggable {
   color: #000;
-  border: 1px solid #007bff;
+  border: 1px solid #000;
   cursor: grab;
   margin: 5px;
 }
@@ -12,6 +12,10 @@
 .btn-submit {
 	background-color: rgb(6, 6, 149);
 	color: #fff;
+}
+.btn-submit:hover {
+  background-color: rgb(9, 9, 213);
+  color: #fff;
 }
 
 .badge-primary {
@@ -26,6 +30,11 @@
   justify-content: center;
   align-items: center;
   background-color: #f8f9fa;
+}
+
+.card-header {
+  background-color: #a2a1a1;
+  color: #000;
 }
 
 .error {
