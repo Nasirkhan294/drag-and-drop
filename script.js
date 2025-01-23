@@ -10,7 +10,6 @@ function updateButtonColors(button) {
 	button.style.backgroundColor = 'rgb(77, 77, 241)';
 	button.style.opacity = '50%';
 	button.style.color = '#fff';
-	button.style.fontWeight = '700';
 }
 
 // Function to revert button to its original position

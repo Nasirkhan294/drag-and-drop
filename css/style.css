@@ -3,6 +3,7 @@
   border: 1px solid #000;
   cursor: grab;
   margin: 5px;
+  font-weight: 700;
 }
 
 .btn-draggable:hover {
