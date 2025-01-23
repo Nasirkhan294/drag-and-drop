@@ -10,7 +10,6 @@ function moveToContainer(button, container) {
 	const clonedButton = button.cloneNode(true);
 	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
-	clonedButton.classList.add('moved');
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
 }
