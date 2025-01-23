@@ -5,6 +5,16 @@ const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
 const notImportantOptions = document.getElementById('not-important-options');
 
+// Function to clone and move the button
+function moveToContainer(button, container) {
+	const clonedButton = button.cloneNode(true);
+	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
+	clonedButton.dataset.originalId = button.id; // Store reference to the original button
+	clonedButton.classList.add('moved');
+	container.appendChild(clonedButton);
+	button.disabled = true; // Disable the original button
+}
+
 // Helper function to handle drag and drop for both mouse and touch
 function enableDragAndDrop(draggable) {
 
@@ -41,12 +51,22 @@ function enableDragAndDrop(draggable) {
 				touch.clientY <= rect.right &&
 				touch.clientY >= rect.top &&
 				touch.clientY <= rect.bottom
-			){
-				if(!droppable.contains(draggable)) {
+			) {
+				if (!droppable.contains(draggable)) {
 					droppable.appendChild(draggable)
 				}
 			}
 		});
+	});
+
+	// Add click functionality to move button
+	draggable.addEventListener('click', () => {
+		const targetContainer = confirm('Move to Important? Click OK for Important or Cancel for Not Important.')
+			? document.getElementById('important')
+			: document.getElementById('not-important');
+		if (!targetContainer.querySelector(`#${draggable.id}`)) {
+			moveToContainer(draggable, targetContainer);
+		}
 	});
 }
 
