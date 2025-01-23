@@ -5,6 +5,14 @@ const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
 const notImportantOptions = document.getElementById('not-important-options');
 
+// Function to update button background color
+function updateButtonColors(button) {
+	button.style.backgroundColor = 'rgb(77, 77, 241)';
+	button.style.opacity = '50%';
+	button.style.color = '#fff';
+	button.style.fontWeight = '700';
+}
+
 
 // Function to revert button to its original position
 function revertButton(clonedButton) {
@@ -18,6 +26,7 @@ function moveToContainer(button, container) {
 	const clonedButton = button.cloneNode(true);
 	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
+	updateButtonColors(clonedButton, container);
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
 
@@ -60,12 +69,12 @@ function enableDragAndDrop(draggable) {
 			const touch = e.changedTouches[0];
 			if (
 				touch.clientX >= rect.left &&
-				touch.clientY <= rect.right &&
+				touch.clientX <= rect.right &&
 				touch.clientY >= rect.top &&
 				touch.clientY <= rect.bottom
 			) {
-				if (!droppable.contains(draggable)) {
-					droppable.appendChild(draggable)
+				if (!droppable.querySelector(`#${draggable.id}`)) {
+					moveToContainer(draggable, droppable);
 				}
 			}
 		});
