@@ -13,7 +13,6 @@ function updateButtonColors(button) {
 	button.style.fontWeight = '700';
 }
 
-
 // Function to revert button to its original position
 function revertButton(clonedButton) {
 	const originalButton = document.getElementById(clonedButton.dataset.originalId);
@@ -26,14 +25,14 @@ function moveToContainer(button, container) {
 	const clonedButton = button.cloneNode(true);
 	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
-	updateButtonColors(clonedButton, container);
+	updateButtonColors(clonedButton);
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
 
 	// Add double-click event to revert the button
 	clonedButton.addEventListener('dblclick', () => {
 		revertButton(clonedButton);
-	})
+    });
 }
 
 // Helper function to handle drag and drop for both mouse and touch
@@ -43,7 +42,6 @@ function enableDragAndDrop(draggable) {
 	draggable.addEventListener('dragstart', (e) => {
 		e.dataTransfer.setData('text', e.target.id);
 	});
-
 
 	// Touch events
 	draggable.addEventListener('touchstart', (e) => {
@@ -73,7 +71,7 @@ function enableDragAndDrop(draggable) {
 				touch.clientY >= rect.top &&
 				touch.clientY <= rect.bottom
 			) {
-				if (!droppable.querySelector(`#${draggable.id}`)) {
+				if(!droppable.querySelector(`#${draggable.id}`)) {
 					moveToContainer(draggable, droppable);
 				}
 			}
@@ -83,7 +81,7 @@ function enableDragAndDrop(draggable) {
 	// Add click functionality to move button
 	draggable.addEventListener('click', () => {
 		const targetContainer = confirm('Move to Important? Click OK for Important or Cancel for Not Important.')
-			? document.getElementById('important')
+		    ? document.getElementById('important')
 			: document.getElementById('not-important');
 		if (!targetContainer.querySelector(`#${draggable.id}`)) {
 			moveToContainer(draggable, targetContainer);
@@ -91,7 +89,7 @@ function enableDragAndDrop(draggable) {
 	});
 }
 
-// Apply drap-and-drop functionality to each draggable item
+// Apply drag-and-drop functionality to each draggable item
 draggables.forEach((draggable) => enableDragAndDrop(draggable));
 
 // Handle droppable areas
@@ -105,7 +103,7 @@ droppables.forEach((droppable) => {
 		const id = e.dataTransfer.getData('text');
 		const draggable = document.getElementById(id);
 		if (!droppable.querySelector(`#${draggable.id}`)) {
-			moveToContainer(draggable, droppable)
+			moveToContainer(draggable, droppable);
 		}
 	});
 });
@@ -116,7 +114,7 @@ submitButton.addEventListener('click', () => {
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
 
 	if (importantItems.length + notImportantItems.length !== draggables.length) {
-		errorMessage.textContent = "Error: Please drag all the options to either 'Important' or 'Not Important' sections.";
+		errorMessage.textContent = "Error: Please drag or click all the options to either 'Important' or 'Not Important' sections.";
 		return;
 	}
 	errorMessage.textContent = "";
@@ -124,4 +122,3 @@ submitButton.addEventListener('click', () => {
 	importantOptions.textContent = "Important: " + Array.from(importantItems).map((item) => item.textContent.trim()).join(", ");
 	notImportantOptions.textContent = "Not Important: " + Array.from(notImportantItems).map((item) => item.textContent.trim()).join(", ");
 });
-
