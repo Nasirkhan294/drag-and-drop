@@ -5,6 +5,14 @@ const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
 const notImportantOptions = document.getElementById('not-important-options');
 
+
+// Function to revert button to its original position
+function revertButton(clonedButton) {
+	const originalButton = document.getElementById(clonedButton.dataset.originalId);
+	originalButton.disabled = false; // Enable the original button
+	clonedButton.remove(); // Remove the cloned button
+}
+
 // Function to clone and move the button
 function moveToContainer(button, container) {
 	const clonedButton = button.cloneNode(true);
@@ -12,6 +20,11 @@ function moveToContainer(button, container) {
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
+
+	// Add double-click event to revert the button
+	clonedButton.addEventListener('dblclick', () => {
+		revertButton(clonedButton);
+	})
 }
 
 // Helper function to handle drag and drop for both mouse and touch
