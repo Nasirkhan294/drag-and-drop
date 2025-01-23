@@ -52,7 +52,7 @@ git clone git@github.com:Nasirkhan294/drag-and-drop.git
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Nasirkhan294**
+👤 **Nasir Mahmood**
 
 - GitHub: [Nasirkhan294](https://github.com/Nasirkhan294)
 - LinkedIn: [nasirmahd](https://www.linkedin.com/in/nasirmahd/)
