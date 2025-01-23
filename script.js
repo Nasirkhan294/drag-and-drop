@@ -104,8 +104,8 @@ droppables.forEach((droppable) => {
 		e.preventDefault();
 		const id = e.dataTransfer.getData('text');
 		const draggable = document.getElementById(id);
-		if (!droppable.contains(draggable)) {
-			droppable.appendChild(draggable);
+		if (!droppable.querySelector(`#${draggable.id}`)) {
+			moveToContainer(draggable, droppable)
 		}
 	});
 });
