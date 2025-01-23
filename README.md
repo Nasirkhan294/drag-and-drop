@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h1>Drag-and-Drop Interface</h>
+  <h1>🚀 Drag-and-Drop Interface</h>
 </div>
 
 A modern, responsive drag-and-drop interface built with vanilla JavaScript and Bootstrap 5. Optimized for all devices, perfect for task management and interactive categorization.  🚀
