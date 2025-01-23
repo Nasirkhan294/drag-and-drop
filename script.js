@@ -7,7 +7,7 @@ const notImportantOptions = document.getElementById('not-important-options');
 
 // Function to update button background color
 function updateButtonColors(button) {
-	button.style.backgroundColor = 'rgb(77, 77, 241)';
+	button.style.backgroundColor = 'rgb(109, 109, 245)';
 	button.style.opacity = '50%';
 	button.style.color = '#fff';
 }
