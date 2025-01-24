@@ -5,90 +5,77 @@ const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
 const notImportantOptions = document.getElementById('not-important-options');
 
-// Function to update button background color
-function updateButtonColors(button) {
+let highlightedButton = null; // To track the highlighted button
+
+// Function to highlight the button
+function highlightButton(button) {
+	if (highlightedButton) {
+		highlightedButton.classList.remove('highlighted');
+	}
+	highlightedButton = button;
+	button.classList.add('highlighted');
+}
+
+// Function to unhighlight the button
+function unhighlightButton() {
+	if (highlightedButton) {
+		highlightedButton.classList.remove('highlighted');
+		highlightedButton = null;
+	}
+}
+
+// Function to update button styles
+function updateButtonStyles(button) {
 	button.style.backgroundColor = 'rgb(109, 109, 245)';
 	button.style.opacity = '50%';
 	button.style.color = '#fff';
 }
 
-// Function to revert button to its original position
+// Function to revert the button
 function revertButton(clonedButton) {
 	const originalButton = document.getElementById(clonedButton.dataset.originalId);
 	originalButton.disabled = false; // Enable the original button
 	clonedButton.remove(); // Remove the cloned button
 }
 
-// Function to clone and move the button
+// Function to move the button
 function moveToContainer(button, container) {
+	// Ensure the highlighted class is removed before moving
+	button.classList.remove('highlighted');
+	
 	const clonedButton = button.cloneNode(true);
 	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
-	updateButtonColors(clonedButton);
+	updateButtonStyles(clonedButton);
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
 
 	// Add double-click event to revert the button
 	clonedButton.addEventListener('dblclick', () => {
 		revertButton(clonedButton);
-    });
+	});
 }
 
-// Helper function to handle drag and drop for both mouse and touch
-function enableDragAndDrop(draggable) {
+// Function to handle click-to-move
+function handleClickToMove(container) {
+	if (highlightedButton && !container.querySelector(`#${highlightedButton.id}`)) {
+		moveToContainer(highlightedButton, container);
+		unhighlightButton();
+	}
+}
 
-	// Mouse events
+// Enable drag-and-drop functionality
+function enableDragAndDrop(draggable) {
 	draggable.addEventListener('dragstart', (e) => {
 		e.dataTransfer.setData('text', e.target.id);
 	});
 
-	// Touch events
-	draggable.addEventListener('touchstart', (e) => {
-		e.target.classList.add('dragging');
-	});
-
-	draggable.addEventListener('touchmove', (e) => {
-		e.preventDefault();
-		const touch = e.touches[0];
-		const draggable = document.querySelector('.dragging');
-		draggable.style.position = 'absolute';
-		draggable.style.zIndex = '1000';
-		draggable.style.left = `${touch.clientX - draggable.offsetWidth / 2}px`;
-		draggable.style.top = `${touch.clientY - draggable.offsetHeight / 2}px`;
-	});
-
-	draggable.addEventListener('touchend', (e) => {
-		const draggable = document.querySelector('.dragging');
-		draggable.style.position = 'static';
-		draggable.classList.remove('dragging');
-		droppables.forEach((droppable) => {
-			const rect = droppable.getBoundingClientRect();
-			const touch = e.changedTouches[0];
-			if (
-				touch.clientX >= rect.left &&
-				touch.clientX <= rect.right &&
-				touch.clientY >= rect.top &&
-				touch.clientY <= rect.bottom
-			) {
-				if(!droppable.querySelector(`#${draggable.id}`)) {
-					moveToContainer(draggable, droppable);
-				}
-			}
-		});
-	});
-
-	// Add click functionality to move button
 	draggable.addEventListener('click', () => {
-		const targetContainer = confirm('Move to Important? Click OK for Important or Cancel for Not Important.')
-		    ? document.getElementById('important')
-			: document.getElementById('not-important');
-		if (!targetContainer.querySelector(`#${draggable.id}`)) {
-			moveToContainer(draggable, targetContainer);
-		}
+		highlightButton(draggable); // Highlight the button on click
 	});
 }
 
-// Apply drag-and-drop functionality to each draggable item
+// Apply drag-and-drop functionality to each draggable
 draggables.forEach((draggable) => enableDragAndDrop(draggable));
 
 // Handle droppable areas
@@ -105,6 +92,12 @@ droppables.forEach((droppable) => {
 			moveToContainer(draggable, droppable);
 		}
 	});
+
+	droppable.addEventListener('click', () => {
+		handleClickToMove(droppable); // Move the highlighted button on click
+	});
+
+	unhighlightButton();
 });
 
 // Handle form submission
@@ -113,7 +106,7 @@ submitButton.addEventListener('click', () => {
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
 
 	if (importantItems.length + notImportantItems.length !== draggables.length) {
-		errorMessage.textContent = "Error: Please drag or click all the options to either 'Important' or 'Not Important' sections.";
+		errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections.";
 		return;
 	}
 	errorMessage.textContent = "";
