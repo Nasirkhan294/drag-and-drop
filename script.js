@@ -27,7 +27,6 @@ function unhighlightButton() {
 // Function to update button styles
 function updateButtonStyles(button) {
 	button.style.backgroundColor = 'rgb(109, 109, 245)';
-	button.style.opacity = '50%';
 	button.style.color = '#fff';
 }
 
@@ -42,7 +41,7 @@ function revertButton(clonedButton) {
 function moveToContainer(button, container) {
 	// Ensure the highlighted class is removed before moving
 	button.classList.remove('highlighted');
-	
+
 	const clonedButton = button.cloneNode(true);
 	clonedButton.setAttribute('draggable', false); // Disable drag on cloned button
 	clonedButton.dataset.originalId = button.id; // Store reference to the original button
