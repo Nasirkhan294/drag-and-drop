@@ -69,6 +69,39 @@ function enableDragAndDrop(draggable) {
 		e.dataTransfer.setData('text', e.target.id);
 	});
 
+	// Touch events
+	draggable.addEventListener('touchstart', (e) => {
+		e.target.classList.add('dragging');
+	});
+	draggable.addEventListener('touchmove', (e) => {
+		e.preventDefault();
+		const touch = e.touches[0];
+		const draggable = document.querySelector('.dragging');
+		draggable.style.position = 'absolute';
+		draggable.style.zIndex = '1000';
+		draggable.style.left = `${touch.clientX - draggable.offsetWidth / 2}px`;
+		draggable.style.top = `${touch.clientY - draggable.offsetHeight / 2}px`;
+	});
+	draggable.addEventListener('touchend', (e) => {
+		const draggable = document.querySelector('.dragging');
+		draggable.style.position = 'static';
+		draggable.classList.remove('dragging');
+		droppables.forEach((droppable) => {
+			const rect = droppable.getBoundingClientRect();
+			const touch = e.changedTouches[0];
+			if (
+				touch.clientX >= rect.left &&
+				touch.clientX <= rect.right &&
+				touch.clientY >= rect.top &&
+				touch.clientY <= rect.bottom
+			) {
+				if (!droppable.querySelector(`#${draggable.id}`)) {
+					moveToContainer(draggable, droppable);
+				}
+			}
+		});
+	});
+
 	draggable.addEventListener('click', () => {
 		highlightButton(draggable); // Highlight the button on click
 	});
