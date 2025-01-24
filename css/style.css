@@ -44,7 +44,7 @@
 }
 
 .highlighted {
-	border: 2px solid #2831e3;
+	border: 1px solid #2831e3;
 	box-shadow: 0 0 10px rgb(109, 109, 245);
 }
 

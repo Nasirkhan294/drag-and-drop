@@ -96,8 +96,6 @@ droppables.forEach((droppable) => {
 	droppable.addEventListener('click', () => {
 		handleClickToMove(droppable); // Move the highlighted button on click
 	});
-
-	unhighlightButton();
 });
 
 // Handle form submission
