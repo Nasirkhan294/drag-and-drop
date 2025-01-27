@@ -101,7 +101,9 @@ function enableDragAndDrop(draggable) {
 	});
 	draggable.addEventListener('touchend', (e) => {
 		const draggable = document.querySelector('.dragging');
-		draggable.style.position = 'static';
+		draggable.style.position = 'relative';
+		draggable.style.left = '';
+		draggable.style.top = '';
 		draggable.classList.remove('dragging');
 		droppables.forEach((droppable) => {
 			const rect = droppable.getBoundingClientRect();
