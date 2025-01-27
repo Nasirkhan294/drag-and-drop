@@ -30,6 +30,19 @@ function updateButtonStyles(button) {
 	button.style.color = '#fff';
 }
 
+// Function to create and add the cross button
+function createCrossButton(clonedButton) {
+	const crossBtn = document.getElementById('cross-btn');
+	crossBtn.classList.toggle('d-none')
+
+	// Add event listener to remove the button when the cross is clicked
+	crossBtn.addEventListener('click', () => {
+		revertButton(clonedButton);
+	});
+
+	clonedButton.appendChild(crossBtn);
+}
+
 // Function to revert the button
 function revertButton(clonedButton) {
 	const originalButton = document.getElementById(clonedButton.dataset.originalId);
@@ -48,6 +61,9 @@ function moveToContainer(button, container) {
 	updateButtonStyles(clonedButton);
 	container.appendChild(clonedButton);
 	button.disabled = true; // Disable the original button
+
+	// Add the cross button to allow the user to revert the button
+	createCrossButton(clonedButton);
 
 	// Add double-click event to revert the button
 	clonedButton.addEventListener('dblclick', () => {
