@@ -84,11 +84,13 @@ function handleClickToMove(container) {
 // Enable drag-and-drop functionality
 function enableDragAndDrop(draggable) {
 	draggable.addEventListener('dragstart', (e) => {
+		unhighlightButton(); // Unhighlight any previously highlighted button
 		e.dataTransfer.setData('text', e.target.id);
 	});
 
 	// Touch events
 	draggable.addEventListener('touchstart', (e) => {
+		unhighlightButton(); // Unhighlight any previously highlighted button
 		e.target.classList.add('dragging');
 	});
 	draggable.addEventListener('touchmove', (e) => {
