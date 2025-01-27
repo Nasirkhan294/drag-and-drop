@@ -4,6 +4,7 @@ const submitButton = document.getElementById('submit');
 const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
 const notImportantOptions = document.getElementById('not-important-options');
+const selectAllSwitch = document.getElementById('select-all-switch');
 
 let highlightedButton = null; // To track the highlighted button
 
@@ -146,16 +147,30 @@ droppables.forEach((droppable) => {
 	});
 });
 
+// Function to check if all buttons are moved
+function checkIfAllButtonsMoved() {
+	const importantItems = document.querySelectorAll('#important, .btn-draggable');
+	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
+	return importantItems + notImportantItems === draggables.length;
+}
+
 // Handle form submission
 submitButton.addEventListener('click', () => {
+
+	if (selectAllSwitch.checked) {
+		// If the "Select All" switch in ON, check if all buttons are moved
+		if (!checkIfAllButtonsMoved()) {
+			errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections.";
+			return;
+		}
+	} else {
+		// If the "Select all" switch is OFF, just display the added buttons without error
+		errorMessage.textContent = "";
+	}
+
+	//  If everything is working fine, update the "Important" and "Not Important sections."
 	const importantItems = document.querySelectorAll('#important .btn-draggable');
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
-
-	if (importantItems.length + notImportantItems.length !== draggables.length) {
-		errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections.";
-		return;
-	}
-	errorMessage.textContent = "";
 
 	importantOptions.textContent = "Important: " + Array.from(importantItems).map((item) => item.textContent.trim()).join(", ");
 	notImportantOptions.textContent = "Not Important: " + Array.from(notImportantItems).map((item) => item.textContent.trim()).join(", ");
