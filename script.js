@@ -151,9 +151,9 @@ droppables.forEach((droppable) => {
 
 // Function to check if all buttons are moved
 function checkIfAllButtonsMoved() {
-	const importantItems = document.querySelectorAll('#important, .btn-draggable');
+	const importantItems = document.querySelectorAll('#important .btn-draggable');
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
-	return importantItems + notImportantItems === draggables.length;
+	return importantItems.length + notImportantItems.length === draggables.length;
 }
 
 // Handle form submission
@@ -165,6 +165,7 @@ submitButton.addEventListener('click', () => {
 			errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections.";
 			return;
 		}
+		errorMessage.textContent = "";
 	} else {
 		// If the "Select all" switch is OFF, just display the added buttons without error
 		errorMessage.textContent = "";

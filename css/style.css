@@ -1,8 +1,6 @@
 .btn-draggable {
   position: relative;
-  color: #000;
   border: 1px solid #000;
-  cursor: grab;
   margin: 5px;
   font-weight: 700;
 }
