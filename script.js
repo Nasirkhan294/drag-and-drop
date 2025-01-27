@@ -33,8 +33,8 @@ function updateButtonStyles(button) {
 
 // Function to create and add the cross button
 function createCrossButton(clonedButton) {
-	const crossBtn = document.getElementById('cross-btn');
-	crossBtn.classList.toggle('d-none')
+	const crossBtn = document.createElement('i');
+	crossBtn.classList.add('fas', 'fa-times');
 
 	// Add event listener to remove the button when the cross is clicked
 	crossBtn.addEventListener('click', () => {
@@ -49,6 +49,7 @@ function revertButton(clonedButton) {
 	const originalButton = document.getElementById(clonedButton.dataset.originalId);
 	originalButton.disabled = false; // Enable the original button
 	clonedButton.remove(); // Remove the cloned button
+	updateListItems(); // Re-update the Important and Not Important lists
 }
 
 // Function to move the button
@@ -149,6 +150,25 @@ droppables.forEach((droppable) => {
 	});
 });
 
+// Function to update the "Important" and "Not Important" lists
+function updateListItems() {
+	const importantItems = document.querySelectorAll('#important .btn-draggable');
+	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
+
+	// Update the content for Important and Not Important sections
+	importantOptions.textContent = "Important: " + Array.from(importantItems).map((item) => item.textContent.trim()).join(", ");
+	notImportantOptions.textContent = "Not Important: " + Array.from(notImportantItems).map((item) => item.textContent.trim()).join(", ");
+
+	// Update error message based on the select all status
+	if(selectAllSwitch.checked) {
+		if (!checkIfAllButtonsMoved()) {
+			errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections"
+		} else {
+			errorMessage.textContent = "";
+		}
+	}
+}
+
 // Function to check if all buttons are moved
 function checkIfAllButtonsMoved() {
 	const importantItems = document.querySelectorAll('#important .btn-draggable');
@@ -158,7 +178,7 @@ function checkIfAllButtonsMoved() {
 
 // Handle form submission
 submitButton.addEventListener('click', () => {
-
+	
 	if (selectAllSwitch.checked) {
 		// If the "Select All" switch in ON, check if all buttons are moved
 		if (!checkIfAllButtonsMoved()) {
@@ -172,9 +192,5 @@ submitButton.addEventListener('click', () => {
 	}
 
 	//  If everything is working fine, update the "Important" and "Not Important sections."
-	const importantItems = document.querySelectorAll('#important .btn-draggable');
-	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
-
-	importantOptions.textContent = "Important: " + Array.from(importantItems).map((item) => item.textContent.trim()).join(", ");
-	notImportantOptions.textContent = "Not Important: " + Array.from(notImportantItems).map((item) => item.textContent.trim()).join(", ");
+	updateListItems();
 });
