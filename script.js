@@ -3,7 +3,9 @@ const droppables = document.querySelectorAll('.droppable');
 const submitButton = document.getElementById('submit');
 const errorMessage = document.getElementById('error-message');
 const importantOptions = document.getElementById('important-options');
+const highlyImportantOptions = document.getElementById('highly-important-options');
 const notImportantOptions = document.getElementById('not-important-options');
+const neutralOptions = document.getElementById('neutral-options');
 const selectAllSwitch = document.getElementById('select-all-switch');
 
 let highlightedButton = null; // To track the highlighted button
@@ -155,11 +157,15 @@ droppables.forEach((droppable) => {
 // Function to update the "Important" and "Not Important" lists
 function updateListItems() {
 	const importantItems = document.querySelectorAll('#important .btn-draggable');
+	const highlyImportantItems = document.querySelectorAll('#highly-important .btn-draggable');
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
+	const neutralItems = document.querySelectorAll('#neutral .btn-draggable');
 
 	// Update the content for Important and Not Important sections
 	importantOptions.textContent = "Important: " + Array.from(importantItems).map((item) => item.textContent.trim()).join(", ");
+	highlyImportantOptions.textContent = "Highly Important: " + Array.from(highlyImportantItems).map((item) => item.textContent.trim()).join(", ");
 	notImportantOptions.textContent = "Not Important: " + Array.from(notImportantItems).map((item) => item.textContent.trim()).join(", ");
+	neutralOptions.textContent = "Neutral: " + Array.from(neutralItems).map((item) => item.textContent.trim()).join(", ");
 
 	// Update error message based on the select all status
 	if(selectAllSwitch.checked) {
@@ -174,8 +180,10 @@ function updateListItems() {
 // Function to check if all buttons are moved
 function checkIfAllButtonsMoved() {
 	const importantItems = document.querySelectorAll('#important .btn-draggable');
+	const highlyImportantItems = document.querySelectorAll('#highly-important .btn-draggable');
 	const notImportantItems = document.querySelectorAll('#not-important .btn-draggable');
-	return importantItems.length + notImportantItems.length === draggables.length;
+	const neutralItems = document.querySelectorAll('#neutral .btn-draggable');
+	return importantItems.length + highlyImportantItems.length + notImportantItems.length + neutralItems.length === draggables.length;
 }
 
 // Handle form submission

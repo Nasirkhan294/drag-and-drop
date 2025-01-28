@@ -29,7 +29,10 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
+
 
 .card-header {
   background-color: #a2a1a1;

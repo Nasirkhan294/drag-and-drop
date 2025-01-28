@@ -79,7 +79,7 @@
       </div>
 
       <div class="row my-5 gap-3 ms-1">
-        <div class="col-12 col-md-4 card px-0">
+        <div class="col-12 col-md-3 card px-0">
           <p
             class="card-header d-flex justify-content-center align-items-center rounded-top p-3"
           >
@@ -87,13 +87,29 @@
           </p>
           <div class="droppable" id="important"></div>
         </div>
-        <div class="col-12 col-md-4 card px-0">
+        <div class="col-12 col-md-3 card px-0">
+          <p
+            class="card-header d-flex justify-content-center align-items-center rounded-top p-3"
+          >
+            Highly Important
+          </p>
+          <div class="droppable" id="highly-important"></div>
+        </div>
+        <div class="col-12 col-md-3 card px-0">
           <p
             class="card-header d-flex justify-content-center align-items-center rounded-top p-3"
           >
             Not Important
           </p>
           <div class="droppable" id="not-important"></div>
+        </div>
+        <div class="col-12 col-md-3 card px-0">
+          <p
+            class="card-header d-flex justify-content-center align-items-center rounded-top p-3"
+          >
+            Neutral
+          </p>
+          <div class="droppable" id="neutral"></div>
         </div>
       </div>
 
@@ -109,7 +125,9 @@
       <div>
         <h3>Selected Options:</h3>
         <p id="important-options">Important:</p>
+        <p id="highly-important-options">Highly Important:</p>
         <p id="not-important-options">Not Important:</p>
+        <p id="neutral-options">Neutral:</p>
       </div>
     </section>
     <script src="script.js"></script>
