@@ -204,3 +204,9 @@ submitButton.addEventListener('click', () => {
 	//  If everything is working fine, update the "Important" and "Not Important sections."
 	updateListItems();
 });
+
+// Dark Mode theme
+const darkMode = document.getElementById('dark-mode-toggle');
+darkMode.addEventListener('click', () => {
+	document.body.classList.toggle('dark-mode');
+});

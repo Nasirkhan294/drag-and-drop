@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+  font-family:'Inter', serif;
+  font-weight: 700;
+}
+
 .btn-draggable {
   position: relative;
   border: 1px solid #000;
@@ -63,4 +70,19 @@
   justify-content: center;
   color: #fff;
   cursor: pointer;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .droppable {
+  background: linear-gradient(to bottom, #333, #444);
+  border: 1px solid #888;
+}
+
+.dark-mode .btn-draggable {
+  background: #666;
+  color: #fff;
 }
