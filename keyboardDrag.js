@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 
 		// Remove button from container (Ctrl + 1-6)
-		if (e.ctrlKey && e.key >= '1' && e.key <= '6') {
+		if (e.key >= '1' && e.key <= '6') {
 			const buttonIndex = parseInt(e.key) - 1;
 			removeButtonFromContainer(buttonIndex);
 		}
@@ -108,4 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Click event for submit button
 	submitButton.addEventListener('click', submitForm);
+
+	
 });
