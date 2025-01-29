@@ -109,5 +109,12 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Click event for submit button
 	submitButton.addEventListener('click', submitForm);
 
-	
+	// Remove highlighted class when dragstart or click drag events triggered
+	buttons.forEach(button => {
+		button.addEventListener('dragstart', function () {
+			if (selectedButton) {
+				selectedButton.classList.remove('highlighted');
+			}
+		});
+	});
 });
