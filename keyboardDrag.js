@@ -49,11 +49,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		clonedButton.dataset.originalIndex = index; // Store original index
 	}
 
+	// Function to update button styles
+	function updateButtonStyles(button) {
+		button.style.backgroundColor = 'rgb(109, 109, 245)';
+		button.style.color = '#fff';
+	}
+
 	// Function to select a container
 	function selectContainer(index) {
 		if (!clonedButton) return;
 		clonedButton.classList.remove('highlighted');
 		currentContainer = containers[index];
+		updateButtonStyles(clonedButton);
 		currentContainer.appendChild(clonedButton);
 		// Disable the original button and remove highlight
 		selectedButton.disabled = true;
@@ -112,6 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Remove highlighted class when dragstart or click drag events triggered
 	buttons.forEach(button => {
 		button.addEventListener('dragstart', function () {
+			if (selectedButton) {
+				selectedButton.classList.remove('highlighted');
+			}
+		});
+		
+		button.addEventListener('mousedown', function () {
+			// If there was a previously highlighted button, remove the class
 			if (selectedButton) {
 				selectedButton.classList.remove('highlighted');
 			}
