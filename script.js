@@ -154,7 +154,7 @@ droppables.forEach((droppable) => {
 	});
 });
 
-// Function to update the "Important" and "Not Important" lists
+// Function to update the lists
 function updateListItems() {
 	const importantItems = document.querySelectorAll('#important .btn-draggable');
 	const highlyImportantItems = document.querySelectorAll('#highly-important .btn-draggable');
@@ -170,7 +170,7 @@ function updateListItems() {
 	// Update error message based on the select all status
 	if(selectAllSwitch.checked) {
 		if (!checkIfAllButtonsMoved()) {
-			errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections"
+			errorMessage.textContent = "Error: Please drag all options to either 'Important', 'Highly Important', 'Not Important' or 'Neutral' sections.";
 		} else {
 			errorMessage.textContent = "";
 		}
@@ -192,7 +192,7 @@ submitButton.addEventListener('click', () => {
 	if (selectAllSwitch.checked) {
 		// If the "Select All" switch in ON, check if all buttons are moved
 		if (!checkIfAllButtonsMoved()) {
-			errorMessage.textContent = "Error: Please drag all options to either 'Important' or 'Not Important' sections.";
+			errorMessage.textContent = "Error: Please drag all options to either 'Important', 'Highly Important', 'Not Important' or 'Neutral' sections.";
 			return;
 		}
 		errorMessage.textContent = "";

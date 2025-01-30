@@ -1,10 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-	let selectedButton = null;
 	let clonedButton = null;
 	let currentContainer = null;
-	const buttons = document.querySelectorAll('.btn-draggable');
-	const containers = document.querySelectorAll('.droppable');
-	const submitButton = document.getElementById('submit');
 
 	// Button selection logic (1-6)
 	document.addEventListener('keydown', function (e) {
@@ -33,12 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Function to highlight and select a button
 	function selectButton(index) {
-		const button = buttons[index];
-		if (selectedButton) {
-			selectedButton.classList.remove('highlighted');
-		}
-		selectedButton = button;
-		selectedButton.classList.add('highlighted');
+		const button = draggables[index];
+		highlightButton(button);
 
 		// Check if the button is already disabled (already moved to a container)
 		if (button.disabled) return;
@@ -49,85 +41,71 @@ document.addEventListener('DOMContentLoaded', function () {
 		clonedButton.dataset.originalIndex = index; // Store original index
 	}
 
-	// Function to update button styles
-	function updateButtonStyles(button) {
-		button.style.backgroundColor = 'rgb(109, 109, 245)';
-		button.style.color = '#fff';
-	}
-
 	// Function to select a container
 	function selectContainer(index) {
 		if (!clonedButton) return;
 		clonedButton.classList.remove('highlighted');
-		currentContainer = containers[index];
+		currentContainer = droppables[index];
 		updateButtonStyles(clonedButton);
 		currentContainer.appendChild(clonedButton);
 		// Disable the original button and remove highlight
-		selectedButton.disabled = true;
-		selectedButton.classList.remove('highlighted');
-		
-		// Reset clonedButton & selectedButton to prevent duplicate cloning
-		clonedButton = null;
-		selectedButton = null; 
+		highlightedButton.disabled = true;
+		unhighlightButton();
 	}
 
 	// Function to remove the button from the container
 	function removeButtonFromContainer(buttonIndex) {
-		const buttonId = buttons[buttonIndex].id;
+		const buttonId = draggables[buttonIndex].id;
 
 		// Find and remove the correct cloned button from any container
 		let found = false;
-		containers.forEach(container => {
+		droppables.forEach(container => {
 			const clonedButtons = container.querySelectorAll('.cloned');
 			clonedButtons.forEach(clone => {
 				if (clone.id === buttonId) {
 					container.removeChild(clone);
-					buttons[buttonIndex].disabled = false;
-					buttons[buttonIndex].classList.remove('highlighted');
+					draggables[buttonIndex].disabled = false;
+					draggables[buttonIndex].classList.remove('highlighted');
 					found = true;
 				}
 			});
 		});
 
 		if (found) {
-			selectedButton = null;
+			highlightedButton = null;
 		}
 	}
 
 	// Function to submit form
 	function submitForm() {
-		document.getElementById('important-options').innerHTML =
-			'Important: ' + getContainerOptions('important');
-		document.getElementById('highly-important-options').innerHTML =
-			'Highly Important: ' + getContainerOptions('highly-important');
-		document.getElementById('not-important-options').innerHTML =
-			'Not Important: ' + getContainerOptions('not-important');
-		document.getElementById('neutral-options').innerHTML =
-			'Neutral: ' + getContainerOptions('neutral');
+		if (selectAllSwitch.checked) {
+			if (!checkIfAllButtonsMoved()) {
+				errorMessage.textContent = "Error: Please drag all options to either 'Important', 'Highly Important', 'Not Important' or 'Neutral' sections.";
+			}
+			errorMessage.textContent = "";
+		} else {
+			errorMessage.textContent = "";
+		}
+
+		updateListItems();
 	}
 
-	// Function to get selected options from a container
-	function getContainerOptions(containerId) {
-		const container = document.getElementById(containerId);
-		const items = Array.from(container.children).map((item) => item.textContent.trim());
-		return items.length > 0 ? items.join(', ') : '';
-	}
 
 	// Click event for submit button
 	submitButton.addEventListener('click', submitForm);
 
 	// Remove highlighted class when dragstart or click drag events triggered
-	buttons.forEach(button => {
-		button.addEventListener('dragstart', function () {
-			if (selectedButton) {
-				selectedButton.classList.remove('highlighted');
+	draggables.forEach(draggable => {
+		draggable.addEventListener('dragstart', function () {
+			if (highlightedButton) {
+				highlightedButton.classList.remove('highlighted');
 			}
 		});
-		
-		button.addEventListener('mousedown', function () {
+
+		draggable.addEventListener('mousedown', function () {
 			// If there was a previously highlighted button, remove the class
-			if (selectedButton) {
-				selectedButton.classList.remove('highlighted');
+			if (highlightedButton) {
+				highlightedButton.classList.remove('highlighted');
 			}
 		});
 	});
