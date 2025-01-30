@@ -68,6 +68,7 @@ git clone git@github.com:Nasirkhan294/drag-and-drop.git
 
 - [ ] **Integration with Real API Data**
 - [ ] **Search Option**
+- [ ] **LocalStorage Option**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
