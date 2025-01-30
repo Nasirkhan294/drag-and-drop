@@ -71,17 +71,45 @@ body {
   cursor: pointer;
 }
 
-.guide-box {
-  position: absolute;
-  top: 40px;
-  right: 3px;
-  z-index: 999;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 13px;
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
 
 .dark-mode {
   background-color: #121212;
@@ -93,10 +121,6 @@ body {
   border: 1px solid #888;
 }
 
-.dark-mode .guide-box {
-  background: linear-gradient(to bottom, #333, #444);
-  border: 1px solid #888;
-}
 
 .dark-mode .btn-draggable {
   background: #666;
