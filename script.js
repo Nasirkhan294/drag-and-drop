@@ -215,13 +215,7 @@ darkMode.addEventListener('click', () => {
 
 // Toggle guide visibility
 toggleGuideBtn.addEventListener('click', () => {
-	if (guideBox.style.display === 'none' || guideBox.style.display === '') {
-		guideBox.style.display = 'block';
-		toggleGuideBtn.textContent = 'Hide Guide';
-	} else {
-		guideBox.style.display = 'none';
-		toggleGuideBtn.textContent = 'Show Guide';
-	}
+	guideBox.classList.toggle('d-none')
 });
 
 // Keyboard drag functionality
