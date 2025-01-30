@@ -22,8 +22,11 @@ A modern, responsive drag-and-drop interface built with vanilla JavaScript and B
 - [x] **Responsive Design**
 - [x] **Drag-and-Drop Interaction**
 - [x] **Click-to-Move Functionality**
+- [x] **Keyboard-Move Functionality**
+- [x] **Touch-Move Functionality**
 - [x] **Revert Option**
-- [x] **Touch-Friendly Design**
+- [x] **Validate Option**
+- [x] **Dark Mode Option**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -64,7 +67,7 @@ git clone git@github.com:Nasirkhan294/drag-and-drop.git
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **Integration with Real API Data**
-- [ ] **Dark Mode Toggle**
+- [ ] **Search Option**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
