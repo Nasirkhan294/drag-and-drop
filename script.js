@@ -7,6 +7,8 @@ const highlyImportantOptions = document.getElementById('highly-important-options
 const notImportantOptions = document.getElementById('not-important-options');
 const neutralOptions = document.getElementById('neutral-options');
 const selectAllSwitch = document.getElementById('select-all-switch');
+const toggleGuideBtn = document.getElementById('toggle-guide');
+const guideBox = document.getElementById('keyboard-guide');
 
 let highlightedButton = null; // To track the highlighted button
 
@@ -209,4 +211,15 @@ submitButton.addEventListener('click', () => {
 const darkMode = document.getElementById('dark-mode-toggle');
 darkMode.addEventListener('click', () => {
 	document.body.classList.toggle('dark-mode');
+});
+
+// Toggle guide visibility
+toggleGuideBtn.addEventListener('click', () => {
+	if (guideBox.style.display === 'none' || guideBox.style.display === '') {
+		guideBox.style.display = 'block';
+		toggleGuideBtn.textContent = 'Hide Guide';
+	} else {
+		guideBox.style.display = 'none';
+		toggleGuideBtn.textContent = 'Show Guide';
+	}
 });

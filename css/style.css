@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 body {
-  font-family:'Inter', serif;
+  font-family: 'Inter', serif;
   font-weight: 700;
 }
 
@@ -40,7 +40,6 @@ body {
   transition: transform 0.2s ease-in-out;
 }
 
-
 .card-header {
   background-color: #a2a1a1;
   color: #000;
@@ -72,12 +71,30 @@ body {
   cursor: pointer;
 }
 
+.guide-box {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 3px;
+  z-index: 999;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
 .dark-mode {
   background-color: #121212;
   color: #ffffff;
 }
 
 .dark-mode .droppable {
+  background: linear-gradient(to bottom, #333, #444);
+  border: 1px solid #888;
+}
+
+.dark-mode .guide-box {
   background: linear-gradient(to bottom, #333, #444);
   border: 1px solid #888;
 }
