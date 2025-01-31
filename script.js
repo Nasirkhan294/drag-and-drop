@@ -7,6 +7,7 @@ const highlyImportantOptions = document.getElementById('highly-important-options
 const notImportantOptions = document.getElementById('not-important-options');
 const neutralOptions = document.getElementById('neutral-options');
 const selectAllSwitch = document.getElementById('select-all-switch');
+const toggleGuideBtn = document.getElementById('toggle-guide');
 const welcomeModal = document.getElementById('welcome-modal');
 const closeModalBtn = document.getElementById('close-modal');
 
@@ -219,6 +220,11 @@ darkMode.addEventListener('click', () => {
 // When the user clicks "Got it!" on the welcome modal
 closeModalBtn.addEventListener('click', () => {
 	welcomeModal.classList.add('d-none');
+});
+
+// Toggle the keyboard guide visibility
+toggleGuideBtn.addEventListener('click', () => {
+	welcomeModal.classList.toggle('d-none');
 });
 
 // Keyboard drag functionality
