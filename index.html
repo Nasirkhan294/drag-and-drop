@@ -29,89 +29,65 @@
           🌙 Dark Mode
         </button>
       </div>
-      <!-- Welcome Modal -->
-      <div id="welcome-modal" class="modal-overlay">
-        <div class="modal-content">
-          <h3 class="text-center border-bottom pb-2">Welcome to Our Site!</h3>
-          <p class="my-3">
-            Here are some useful keyboard shortcuts to help you navigate:
-          </p>
-          <ul>
-            <li>
-              Press <span class="badge bg-primary">1-6</span> to select a button
-            </li>
-            <li>
-              Press <span class="badge bg-primary">a-b-c-d</span> to move
-              selected button to a container
-            </li>
-            <li>
-              Press <span class="badge bg-primary">1-6</span> to remove button
-              from container
-            </li>
-            <li>
-              Press <span class="badge bg-primary">Enter</span> to submit
-              selection
-            </li>
-          </ul>
-          <button id="close-modal" class="btn btn-submit">Got it!</button>
-        </div>
+      <!-- User Guide -->
+      <div class="px-2">
+        <p class="mb-0" style="color: #808080">
+          Keyboard guide:
+          <span
+            >Use numbers to select, A-D to move to a container and press Enter
+            to submit</span
+          >
+        </p>
       </div>
-      <div class="buttons-wrapper d-flex justify-content-between align-items-center">
-        <div class="my-3">
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="salary"
-          >
-            <span class="badge badge-primary">1</span> Salary
-          </button>
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="working"
-          >
-            <span class="badge badge-primary">2</span> Working & development
-          </button>
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="benefits"
-          >
-            <span class="badge badge-primary">3</span> Benefits
-          </button>
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="remote"
-          >
-            <span class="badge badge-primary">4</span> Remote Work
-          </button>
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="location"
-          >
-            <span class="badge badge-primary">5</span> Location
-          </button>
-          <button
-            type="button"
-            class="btn btn-draggable rounded-pill"
-            draggable="true"
-            id="atmosphere"
-          >
-            <span class="badge badge-primary">6</span> Work atmosphere
-          </button>
-        </div>
-        <div class="d-none d-lg-block w-25 position-relative">
-          <button type="button" id="toggle-guide" class="btn btn-submit" style="margin-left: 11.8rem;">
-            Keyboard Guide
-          </button>
-        </div>
+      <div class="my-3">
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="salary"
+        >
+          <span class="badge badge-primary">1</span> Salary
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="working"
+        >
+          <span class="badge badge-primary">2</span> Working & development
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="benefits"
+        >
+          <span class="badge badge-primary">3</span> Benefits
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="remote"
+        >
+          <span class="badge badge-primary">4</span> Remote Work
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="location"
+        >
+          <span class="badge badge-primary">5</span> Location
+        </button>
+        <button
+          type="button"
+          class="btn btn-draggable rounded-pill"
+          draggable="true"
+          id="atmosphere"
+        >
+          <span class="badge badge-primary">6</span> Work atmosphere
+        </button>
       </div>
 
       <div class="row my-5 gap-3 ms-1">
@@ -164,6 +140,15 @@
         <p id="highly-important-options">Highly Important:</p>
         <p id="not-important-options">Not Important:</p>
         <p id="neutral-options">Neutral:</p>
+      </div>
+      <div id="keyboard-guide">
+        <p class="mb-0">
+          Keyboard guide:
+          <span
+            >Use numbers to select, A-D to move to a container and press Enter
+            to submit</span
+          >
+        </p>
       </div>
     </section>
     <script src="script.js"></script>

@@ -7,11 +7,10 @@ const highlyImportantOptions = document.getElementById('highly-important-options
 const notImportantOptions = document.getElementById('not-important-options');
 const neutralOptions = document.getElementById('neutral-options');
 const selectAllSwitch = document.getElementById('select-all-switch');
-const toggleGuideBtn = document.getElementById('toggle-guide');
-const welcomeModal = document.getElementById('welcome-modal');
-const closeModalBtn = document.getElementById('close-modal');
+const KeyboardGuide = document.getElementById('keyboard-guide');
 
 let highlightedButton = null; // To track the highlighted button
+let mouseTimer; // Timer to track inactivity;
 
 // Function to highlight the button
 function highlightButton(button) {
@@ -215,17 +214,20 @@ darkMode.addEventListener('click', () => {
 });
 
 
+// Function to show the guide
+function showKeyboardGuide() {
+	KeyboardGuide.classList.add('visible');
 
+	// Clear any existing timer and start a new one to hide it
+	clearTimeout(mouseTimer);
+	mouseTimer = setTimeout(() => {
+		KeyboardGuide.classList.remove('visible');
+	}, 3000); // Hide after 3 mili seconds of inactivity
+}
 
-// When the user clicks "Got it!" on the welcome modal
-closeModalBtn.addEventListener('click', () => {
-	welcomeModal.classList.add('d-none');
-});
+// Event listener to detect mouse movement
+document.addEventListener('mousemove', showKeyboardGuide);
 
-// Toggle the keyboard guide visibility
-toggleGuideBtn.addEventListener('click', () => {
-	welcomeModal.classList.toggle('d-none');
-});
 
 // Keyboard drag functionality
 document.addEventListener('DOMContentLoaded', function () {
